@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Weekly Test-1</title>
+   <style>
+       body{
+           
+           display: flex;
+           height: 400px;
+         
+           width: 300px;
+           border: 15px solid green;
+           padding: 50px;
+           margin: 20px;
+       }
+    
+   
+      #global, #object, #closure{
+          width: 300px;
+     }
+   </style>
+</head>
+<body><div class="model">
+   <div id="global"><input id="glo" type="button" value="CLICK ME">
+       <p id="gl"></p>
+   </div><br>
+   <div id="object"><input id="obj" type="button" value="CLICK ME" onclick="add()">
+    <p id="ob"></p>
+</div><br>
+   <div id="closure"><input id="clo" type="button" value="CLICK ME" onclick="closureFunc()" >
+       <p id="cl"></p>
+   </div><br>
+</div>
+   <script>
+      
+       var globalClick = 0;
+       document.getElementById("glo").addEventListener("click", function(){
+           var globalCount = ++globalClick;
+           console.log("The Global counter is: " + globalCount);
+           document.getElementById('gl').innerHTML = " Global counter: " + globalCount;
+       })
+      
+        var counter = 0;
+        function add() {
+        counter += 1;
+        document.getElementById("ob").innerHTML =  "Object counter: " +  counter;
+        return counter;
+        }
+          
+
+   var closureFunc = (function closureClick() {
+       var clicks = 0;
+       return function() {
+           console.log(parseFloat(clicks)+1);
+           document.getElementById('cl').innerHTML = " Closure Counter: " + (parseFloat(clicks)+1)
+           return ++clicks;
+       }
+   })();
+   </script>
+</body>

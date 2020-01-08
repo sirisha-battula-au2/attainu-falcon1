@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+	<script>
+	function searchFile(file,find){
+var line=0,strcount=0,finalarr=[],found=false,str='';
+jQuery.get(file, function(data) {
+
+for(var i=0;i<data.length;i++)
+{
+  str+=data[i]
+for(var j=0;j<find.length;j++)
+{
+  if(data[i+j]!=find[j])
+  break
+  strcount++
+}
+if(strcount==find.length)
+{
+finalarr.push(line+1)
+found=true
+}
+strcount=0
+if(data[i]== '\n')
+  {
+  line++
+  if(found)
+  {
+  found=false
+  finalarr.push(str)
+  }
+  str=''
+  }
+}
+console.log(finalarr)
+});
+
+}
+searchFile('input.txt','Ansal')
+	</script>
+    
+ 
+ 
+   
+ 
+</html>

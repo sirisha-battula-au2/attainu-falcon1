@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Express_Tweet</title>
+  </head>
+  
+<body>
+    
+  <form class="form-signin" action="/" method="POST">
+<div class="container">
+  <div class="card">
+      <div class="card-body"> 
+  
+   <hr/>
+  <div class="form-group">
+    <label for="InputName"> Name:</label>
+    <input type="text" class="form-control" id="InputName" name = "name" placeholder="Enter Name">
+  </div>
+  <div class="form-group">
+    <label for="text">Tweet:</label>
+    <input type="InputTweet" class="form-control" id="InputTweet " name = "tweet" placeholder="Enter Tweet">
+  </div>
+  
+  <div class="form-group ">
+              <input  class="btn btn-lg btn-primary m-2" type="submit"> 
+              <p class = "mt-5 mb-3 text-muted">
+            </div>
+</form>
+</div>  
+</div>
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<script>
+    $.ajax({
+        url : '/getTweets',
+        method : 'get',
+        dataType : 'json',
+        success : function(data)  {
+            $('body').prepend('<div id = "tweets"></div>');
+            var tweetdiv = "";
+            for(var i=0; i<data.length; i++) {
+        
+    
+        tweetdiv='<div class="col-md-12 col-sm-12 col-lg-12">';
+        tweetdiv+='<div class="card border border-success rounded">';
+        tweetdiv +='<div class="card-header"><h4> #tweet '+(i+1)+'</h4></div';
+        tweetdiv += '<div class="card-body">';
+        tweetdiv += '<p class="card-text">'+data[i].tweet+'</p>';
+        tweetdiv+='<footer class="blockquote-footer">'+data[i].name+'</footer>'
+        tweetdiv += '</div></div><br></div>';
+      
+        $('#tweets').append(tweetdiv);
+            }
+    }
+    })
+</script>
+</body> 
+</html>
+
+ 
